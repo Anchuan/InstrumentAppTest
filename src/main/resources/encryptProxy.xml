@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jsf="http://jsf.jd.com/schema/jsf"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://jsf.jd.com/schema/jsf http://jsf.jd.com/schema/jsf/jsf.xsd">
+ 
+    <!-- 这里不用申明了注册中心了 main.xml中统一申明 一个地方申明即可  -->
+   
+   <jsf:consumer id="sensitiveDataEncryptFacade" interface="com.wangyin.fp.warwolf.facade.api.SensitiveDataEncryptFacade"
+              protocol="jsf" alias="${jsf.encrypt.alias}" lazy="true">
+	</jsf:consumer>
+</beans>
