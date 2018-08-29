@@ -13,12 +13,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -95,6 +97,9 @@ public class HttpUtil {
 		try {
 			CloseableHttpClient httpClient = createSSLClientDefault();
 			response = httpClient.execute(post);
+			Header[] headers = response.getAllHeaders();
+			logger.info("all headers :" + Arrays.toString(headers));
+			logger.info("if contains header u :" + response.containsHeader("u"));
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode == HttpStatus.SC_OK) {
 				HttpEntity entity = response.getEntity();
@@ -112,6 +117,7 @@ public class HttpUtil {
 		}
 		return null;
 	}
+
 
 	public static HttpClient getClient() {
 		RequestConfig.Builder requestBuilder = RequestConfig.custom();

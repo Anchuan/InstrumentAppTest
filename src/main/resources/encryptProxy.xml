@@ -9,4 +9,9 @@
    <jsf:consumer id="sensitiveDataEncryptFacade" interface="com.wangyin.fp.warwolf.facade.api.SensitiveDataEncryptFacade"
               protocol="jsf" alias="${jsf.encrypt.alias}" lazy="true">
 	</jsf:consumer>
+	
+	
+	<jsf:consumer id="testInterFace" interface="com.jd.jr.sd.inter.TestInterFace"
+              protocol="jsf" alias="alias" lazy="true">
+	</jsf:consumer>
 </beans>

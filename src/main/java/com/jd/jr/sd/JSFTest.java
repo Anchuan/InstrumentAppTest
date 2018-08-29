@@ -6,11 +6,17 @@
  */
 package com.jd.jr.sd;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.jd.jr.sd.inter.TestInterFace;
+import com.jd.jr.sd.inter.bean.TestReqBean;
+import com.jd.jr.sd.inter.bean.TestResBean;
 import com.wangyin.fp.warwolf.facade.api.SensitiveDataEncryptFacade;
 
 /**
@@ -24,12 +30,46 @@ import com.wangyin.fp.warwolf.facade.api.SensitiveDataEncryptFacade;
 public class JSFTest {
 	private static Logger logger = LoggerFactory.getLogger(JSFTest.class);
 
-	public static void main(String[] args) {
-		AbstractApplicationContext context = new ClassPathXmlApplicationContext("main.xml");
+	private static AbstractApplicationContext context;
+
+	private static AbstractApplicationContext providerContext;
+
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		context = new ClassPathXmlApplicationContext("main.xml");
+		providerContext = new ClassPathXmlApplicationContext("provider.xml");
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() {
+		context.close();
+		providerContext.close();
+	}
+
+	@Test
+	public void testPlanText() {
 		SensitiveDataEncryptFacade facade = context.getBean(SensitiveDataEncryptFacade.class);
 		String encrypted = facade.encrypt("xxxxxx");
 		logger.info(encrypted);
-		context.close();
+	}
+
+	@Test
+	public void testObject() {
+		TestInterFace facade = context.getBean(TestInterFace.class);
+		TestReqBean req = new TestReqBean();
+		req.setParam1(12);
+		req.setParam2("test");
+		TestResBean resp = facade.test2(req);
+		logger.info("test2 resp ===========" + resp.toString());
+
+		resp = facade.test3(req);
+		logger.info("test3 resp ===========" + resp.toString());
+
+		resp = facade.test1("test");
+		logger.info("test1 resp ===========" + resp.toString());
+
+		resp = facade.test();
+		logger.info("test resp ===========" + resp.toString());
 	}
 
 }
