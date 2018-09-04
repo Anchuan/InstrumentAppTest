@@ -127,6 +127,12 @@ public class JSFTest {
 
 		resp = facade.test();
 		logger.info("test resp ===========" + resp.toString());
+
+		String respStr = facade.test4(req);
+		logger.info("test4 resp ===========" + respStr);
+
+		int respInt = facade.test5(req);
+		logger.info("test5 resp ===========" + respInt);
 	}
 
 }

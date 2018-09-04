@@ -69,4 +69,25 @@ public class TestInterFaceImpl implements TestInterFace {
 		return bean;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.jd.jr.sd.inter.TestInterFace#test4(com.jd.jr.sd.inter.bean.TestReqBean)
+	 */
+	public String test4(TestReqBean req) {
+		return "test4";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.jd.jr.sd.inter.TestInterFace#test5(com.jd.jr.sd.inter.bean.TestReqBean)
+	 */
+	public int test5(TestReqBean req) {
+		// TODO Auto-generated method stub
+		return 5;
+	}
+
 }

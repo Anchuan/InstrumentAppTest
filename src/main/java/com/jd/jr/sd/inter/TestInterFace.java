@@ -28,4 +28,8 @@ public interface TestInterFace {
 
 	public TestResBean test3(TestReqBean req);
 
+	public String test4(TestReqBean req);
+
+	public int test5(TestReqBean req);
+
 }
